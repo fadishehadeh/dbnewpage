@@ -1,0 +1,20 @@
+document.addEventListener('DOMContentLoaded',()=>{
+  document.body.classList.add('loaded');
+  const nav=document.querySelector('.main-nav');
+  const items=[...document.querySelectorAll('.nav-item')];
+  const indicator=document.querySelector('.nav-indicator');
+  const move=item=>{if(!item||!indicator||innerWidth<=820)return;const box=nav.getBoundingClientRect(),button=item.querySelector('.nav-button').getBoundingClientRect();indicator.style.width=`${button.width}px`;indicator.style.transform=`translateX(${button.left-box.left}px)`;items.forEach(el=>el.classList.toggle('is-highlighted',el===item))};
+  const active=document.querySelector('.nav-item.active')||items[0];
+  requestAnimationFrame(()=>move(active));
+  items.forEach(item=>{item.addEventListener('mouseenter',()=>move(item));item.addEventListener('focusin',()=>move(item));item.querySelector('.nav-button').addEventListener('click',()=>{items.forEach(el=>{if(el!==item)el.classList.remove('open')});item.classList.toggle('open');move(item)})});
+  nav?.addEventListener('mouseleave',()=>move(active));
+  addEventListener('resize',()=>move(active));
+  const toggle=document.querySelector('.menu-toggle');
+  toggle?.addEventListener('click',()=>{const open=nav.classList.toggle('mobile-open');toggle.setAttribute('aria-expanded',String(open))});
+  document.addEventListener('click',event=>{if(!event.target.closest('.main-nav')&&!event.target.closest('.menu-toggle'))items.forEach(el=>el.classList.remove('open'))});
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  document.querySelectorAll('[data-tabs]').forEach(group=>{const buttons=[...group.querySelectorAll('.tab-button')],panels=[...group.querySelectorAll('.tab-panel')];buttons.forEach((button,index)=>button.addEventListener('click',()=>{buttons.forEach(el=>{el.classList.remove('active');el.setAttribute('aria-selected','false')});panels.forEach(el=>el.classList.remove('active'));button.classList.add('active');button.setAttribute('aria-selected','true');panels[index].classList.add('active')}))});
+  document.querySelectorAll('.faq-question').forEach(button=>button.addEventListener('click',()=>{const item=button.parentElement,answer=item.querySelector('.faq-answer'),open=item.classList.toggle('open');button.setAttribute('aria-expanded',String(open));answer.style.maxHeight=open?`${answer.scrollHeight}px`:'0px'}));
+  document.querySelectorAll('.demo-form').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const status=form.querySelector('.form-status');status.textContent='Thank you. This prototype form is ready to connect to the bank application service.';form.querySelector('button[type="submit"]').textContent='Request received'}));
+});
