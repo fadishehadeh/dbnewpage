@@ -57,6 +57,7 @@
     .dropdown a.has-next::after{content:"›";font-size:20px;color:var(--blue)}
     .dropdown .dropdown{top:-10px;left:calc(100% + 12px)}
     .dropdown li:hover>.dropdown,.dropdown li:focus-within>.dropdown{visibility:visible;opacity:1;transform:none}
+    .nav-item.disabled{pointer-events:none}.nav-item.disabled>.nav-button{color:#9ba8b7;cursor:not-allowed;opacity:.48}.nav-item.disabled>.nav-button::after{margin-left:6px;content:"·";color:#b7c1cb}.utility-link.disabled{color:#a9b2bf!important;cursor:not-allowed;pointer-events:none}
 
     main{position:relative}
     .hero{position:relative;min-height:790px;padding:96px 0 64px;isolation:isolate}
@@ -158,6 +159,7 @@
     .footer-brand .brand-logo{width:176px;filter:brightness(0) invert(1)}.footer-brand p{max-width:430px;margin-top:24px;color:rgba(255,255,255,.7);font-size:17px;line-height:1.5}.care{display:flex;align-items:center;gap:16px;margin-top:30px}.care-icon{display:grid;width:48px;height:48px;place-items:center;border:1px solid rgba(255,255,255,.3);border-radius:50%;font-size:18px}.care small{display:block;color:rgba(255,255,255,.63)}.care a{font-size:25px;font-weight:600}.care a:hover{color:#8ddc80}
     .login-panel{padding:30px;border:1px solid rgba(255,255,255,.2);border-radius:28px 28px 28px 9px;background:rgba(255,255,255,.08);backdrop-filter:blur(14px)}.login-panel h3{font-size:25px;font-weight:500}.login-panel p{margin:8px 0 22px;color:rgba(255,255,255,.68)}.login-actions{display:flex;flex-wrap:wrap;gap:10px}.login-panel .pill{background:#fff;color:var(--navy);border-color:#fff}.login-panel .pill.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
     .footer-directory{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:34px;padding:54px 0}.footer-col h4{margin:0 0 18px;color:#8ddc80;font-size:14px;letter-spacing:.08em;text-transform:uppercase}.footer-col a{display:block;width:max-content;max-width:100%;margin:11px 0;color:rgba(255,255,255,.72);font-size:15px;transition:color .2s,transform .2s}.footer-col a:hover{color:#fff;transform:translateX(3px)}
+    .footer-col .disabled-link{display:block;width:max-content;max-width:100%;margin:11px 0;color:rgba(255,255,255,.3);font-size:15px;cursor:not-allowed}
     .footer-bottom{position:relative;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:24px 0 30px;border-top:1px solid rgba(255,255,255,.17);color:rgba(255,255,255,.58);font-size:13px}.legal-links,.social-links{display:flex;align-items:center;gap:18px}.footer-bottom a:hover{color:#fff}.social-links a{display:grid;width:34px;height:34px;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;color:#fff;font-size:12px;font-weight:700}.social-links a:hover{background:#fff;color:var(--navy)}
     .option-home{position:fixed;z-index:1000;left:18px;top:50%;display:grid;width:52px;height:52px;place-items:center;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:var(--navy);color:#fff;box-shadow:0 14px 34px rgba(0,45,116,.28);font-size:24px;transform:translateY(-50%);transition:transform .25s var(--ease),background .25s,box-shadow .25s}
     .option-home::after{position:absolute;left:62px;padding:7px 11px;border-radius:9px;background:var(--navy);color:#fff;content:"View options";font-size:13px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transform:translateX(-5px);transition:opacity .2s,transform .2s}
@@ -191,7 +193,7 @@
       <div class="header-actions">
         <a class="pill secondary small" href="https://omnichannels.dukhanbank.com/" target="_blank" rel="noopener">Personal Online Banking</a>
         <a class="pill small" href="https://wboc.dukhanbank.com/" target="_blank" rel="noopener">Corporate Online Banking</a>
-        <a class="utility-link" href="#">Eng / Arb</a>
+        <span class="utility-link disabled" aria-disabled="true">Eng / Arb</span>
         <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
       </div>
     </div>
@@ -206,9 +208,9 @@
         </div>
         <div class="nav-item"><button class="nav-button" type="button">Private Banking</button><ul class="dropdown"><li><a href="private-banking/#products">Banking services</a></li><li><a href="private-banking/#benefits">Personalized service</a></li><li><a href="private-banking/#apply">Get in touch</a></li></ul></div>
         <div class="nav-item"><button class="nav-button" type="button">Corporate Banking</button><ul class="dropdown"><li><a class="has-next" href="corporate-banking/">Solutions</a><ul class="dropdown"><li><a href="corporate-banking/#products">Working capital</a></li><li><a href="corporate-banking/#products">Trade finance</a></li><li><a href="corporate-banking/#products">Project finance</a></li></ul></li><li><a href="corporate-banking/#story">Digital banking</a></li></ul></div>
-        <div class="nav-item"><button class="nav-button" type="button">Markets</button><ul class="dropdown"><li><a href="#home">FX</a></li><li><a href="#home">Rates</a></li><li><a href="#home">Research</a></li></ul></div>
-        <div class="nav-item"><button class="nav-button" type="button">Investor Relations</button><ul class="dropdown"><li><a href="#digital">Reports</a></li><li><a href="#offers">Presentations</a></li><li><a href="#home">Governance</a></li></ul></div>
-        <div class="nav-item"><button class="nav-button" type="button">Sustainability</button><ul class="dropdown"><li><a href="#digital">ESG strategy</a></li><li><a href="#offers">Community</a></li></ul></div>
+        <div class="nav-item disabled"><button class="nav-button" type="button" disabled aria-disabled="true">Markets</button></div>
+        <div class="nav-item disabled"><button class="nav-button" type="button" disabled aria-disabled="true">Investor Relations</button></div>
+        <div class="nav-item disabled"><button class="nav-button" type="button" disabled aria-disabled="true">Sustainability</button></div>
       </nav>
     </div>
   </header>
@@ -326,10 +328,10 @@
       </div>
       <div class="footer-directory">
         <div class="footer-col"><h4>Personal</h4><a href="accounts/">Accounts</a><a href="cards/">Cards</a><a href="personal-finance/">Financing</a><a href="rewards/">Rewards</a><a href="cards/">Offers</a></div>
-        <div class="footer-col"><h4>Ways to bank</h4><a href="mobile-banking/">Dukhan Mobile</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Dpay</a><a href="cards/">Digital prepaid card</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Smart Kiosk</a><a href="mobile-banking/">Rashid assistant</a></div>
+        <div class="footer-col"><h4>Ways to bank</h4><a href="mobile-banking/">Dukhan Mobile</a><span class="disabled-link" aria-disabled="true">Dpay</span><a href="cards/">Digital prepaid card</a><span class="disabled-link" aria-disabled="true">Smart Kiosk</span><a href="mobile-banking/">Rashid assistant</a></div>
         <div class="footer-col"><h4>Business</h4><a href="corporate-banking/">Corporate Banking</a><a href="corporate-banking/#products">Cash Management</a><a href="corporate-banking/#products">Trade Services</a><a href="corporate-banking/">Markets</a><a href="corporate-banking/#story">Digital banking</a></div>
-        <div class="footer-col"><h4>About Dukhan</h4><a href="about/">About us</a><a href="https://dukhanbank.com/media-center" target="_blank" rel="noopener">Media centre</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Investor relations</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Sustainability</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Careers</a></div>
-        <div class="footer-col"><h4>Support</h4><a href="contact/">Contact us</a><a href="contact/">Branches &amp; ATMs</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">Tariff guide</a><a href="https://dukhanbank.com/" target="_blank" rel="noopener">E-forms</a><a href="https://dukhanbank.com/information/accessibility" target="_blank" rel="noopener">Accessibility</a></div>
+        <div class="footer-col"><h4>About Dukhan</h4><a href="about/">About us</a><a href="https://dukhanbank.com/media-center" target="_blank" rel="noopener">Media centre</a><span class="disabled-link" aria-disabled="true">Investor relations</span><span class="disabled-link" aria-disabled="true">Sustainability</span><span class="disabled-link" aria-disabled="true">Careers</span></div>
+        <div class="footer-col"><h4>Support</h4><a href="contact/">Contact us</a><a href="contact/">Branches &amp; ATMs</a><span class="disabled-link" aria-disabled="true">Tariff guide</span><span class="disabled-link" aria-disabled="true">E-forms</span><a href="https://dukhanbank.com/information/accessibility" target="_blank" rel="noopener">Accessibility</a></div>
       </div>
       <div class="footer-bottom">
         <div><span>© 2026 Dukhan Bank. All rights reserved.</span><div class="legal-links"><span>Shari'ah Compliant</span><a href="https://dukhanbank.com/information/privacy" target="_blank" rel="noopener">Privacy</a><a href="https://dukhanbank.com/information/accessibility" target="_blank" rel="noopener">Accessibility</a></div></div>
@@ -362,6 +364,7 @@
       };
       const restoreIndicator=()=>moveIndicator(document.querySelector('.nav-item.active'));
       navItems.forEach(item=>{
+        if(item.classList.contains('disabled'))return;
         item.addEventListener('pointerenter',()=>moveIndicator(item));
         item.querySelector('.nav-button').addEventListener('focus',()=>moveIndicator(item));
       });
