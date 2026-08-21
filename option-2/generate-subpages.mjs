@@ -133,6 +133,13 @@ const readyFooter = footer
   .replace('<a href="https://www.dukhanbank.com/" target="_blank" rel="noopener">Investor relations</a>','<span class="disabled-link" aria-disabled="true">Investor relations</span>')
   .replace('<a href="https://www.dukhanbank.com/" target="_blank" rel="noopener">Sustainability</a>','<span class="disabled-link" aria-disabled="true">Sustainability</span>');
 
+const explicitInternalRoutes = html => {
+  const routes = ['about','accounts','cards','contact','corporate-banking','home-finance','mobile-banking','personal-finance','private-banking','rewards'];
+  let output = html.replaceAll('href="../"','href="../index.html"');
+  routes.forEach(route => { output = output.replaceAll(`href="../${route}/`,`href="../${route}/index.html`); });
+  return output;
+};
+
 const contactForm = `<section class="section" id="apply"><div class="shell form-panel reveal"><div class="form-copy"><div class="section-kicker">Send an enquiry</div><h2>Tell us how we can help.</h2><p>This prototype form demonstrates the intended experience. Never include passwords, PINs, OTPs or full card details.</p></div><form class="form-grid demo-form"><div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required></div><div class="field"><label for="mobile">Mobile number</label><input id="mobile" name="mobile" type="tel" autocomplete="tel" required></div><div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div class="field"><label for="topic">Topic</label><select id="topic" name="topic"><option>Product enquiry</option><option>Service support</option><option>Feedback</option><option>Branch appointment</option></select></div><div class="field full"><label for="message">How can we help?</label><textarea id="message" name="message" required></textarea></div><div class="form-status" role="status"></div><div class="field full"><button class="pill" type="submit">Send enquiry</button></div></form></div></section>`;
 
 const render = p => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${p.intro}"><title>${p.title} ${p.accent} | Dukhan Bank</title><link rel="stylesheet" href="../subpage.css"></head><body>${header(p.active)}<main id="main"><div class="shell breadcrumb"><a href="../">Option Two</a><span>›</span><strong>${p.eyebrow.split(' / ').at(-1)}</strong></div><section class="page-hero"><div class="shell hero-panel"><div class="hero-copy"><div class="eyebrow">${p.eyebrow}</div><h1>${p.title}<em>${p.accent}</em></h1><p>${p.intro}</p><div class="hero-actions"><a class="pill" href="#products">Explore options</a><a class="pill secondary" href="#apply">Talk to us</a></div></div><div class="hero-visual"><img src="${p.image}" alt="Placeholder visual for ${p.eyebrow}" width="900" height="1100"><span class="hero-mark">${p.mark}</span></div></div></section><div class="shell anchor-bar"><div class="anchor-inner"><div class="anchor-links"><a href="#benefits">Benefits</a><a href="#story">Overview</a><a href="#products">Explore</a><a href="#how">How it works</a><a href="#faqs">FAQs</a></div><a class="pill small" href="#apply">Get started</a></div></div>
@@ -145,7 +152,7 @@ ${contactForm}<section class="cta"><div class="shell cta-panel reveal"><h2>${p.c
 
 for (const page of pages) {
   await mkdir(new URL(`./${page.slug}/`, import.meta.url), { recursive:true });
-  await writeFile(new URL(`./${page.slug}/index.html`, import.meta.url), render(page), 'utf8');
+  await writeFile(new URL(`./${page.slug}/index.html`, import.meta.url), explicitInternalRoutes(render(page)), 'utf8');
 }
 
 console.log(`Generated ${pages.length} Option Two subpages.`);
