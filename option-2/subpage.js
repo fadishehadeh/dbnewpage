@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const move=item=>{if(!item||!indicator||innerWidth<=820)return;const box=nav.getBoundingClientRect(),button=item.querySelector('.nav-button').getBoundingClientRect();indicator.style.width=`${button.width}px`;indicator.style.transform=`translateX(${button.left-box.left}px)`;items.forEach(el=>el.classList.toggle('is-highlighted',el===item))};
   const active=document.querySelector('.nav-item.active')||items[0];
   requestAnimationFrame(()=>move(active));
-  items.forEach(item=>{if(item.classList.contains('disabled'))return;item.addEventListener('mouseenter',()=>move(item));item.addEventListener('focusin',()=>move(item));item.querySelector('.nav-button').addEventListener('click',()=>{items.forEach(el=>{if(el!==item)el.classList.remove('open')});item.classList.toggle('open');move(item)})});
+  items.forEach(item=>{if(item.classList.contains('disabled'))return;item.addEventListener('mouseenter',()=>move(item));item.addEventListener('focusin',()=>move(item))});
+  document.querySelectorAll('.nav-toggle').forEach(button=>button.addEventListener('click',event=>{event.stopPropagation();const item=button.parentElement,open=!item.classList.contains('open');items.forEach(el=>{if(el!==item)el.classList.remove('open')});item.classList.toggle('open',open);button.setAttribute('aria-expanded',String(open))}));
   nav?.addEventListener('mouseleave',()=>move(active));
   addEventListener('resize',()=>move(active));
   const toggle=document.querySelector('.menu-toggle');
